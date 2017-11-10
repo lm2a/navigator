@@ -1,7 +1,7 @@
 # navigator
-A MVC pattern implementation similar to Struts framework for Android apps based in one Activity and several Fragments.
+Navigator is a MVC pattern implementation (similar to Struts framework for web) for Android apps which are based in an UI structure composed for one Activity and several Fragments.
 
-Using this you can avoid boiler plate code to navigate among fragments and which is wonderful as a source of documentation you will have in one xml file all the screen flow in you app.
+Using this framework you can avoid boiler plate code to navigate among fragments and after configure your screen flow in a xml file located under /res/raw. Which should be a wonderful source of documentation about your app.
 
 After that all the screen flows should apper in a xml file like this:
 
