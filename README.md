@@ -3,6 +3,10 @@ Navigator is a MVC pattern implementation (similar to Struts framework for web) 
 
 Using this framework you can avoid boiler plate code to navigate among fragments and after configure your screen flow in a xml file located under /res/raw. Which should be a wonderful source of documentation about your app.
 
+Here you have an image showing the way it works:
+
+![Navigator](https://photos.app.goo.gl/j698oJf9orTsoRru2)
+
 After that all the screen flows should apper in a xml file like this:
 
 <?xml version="1.0" encoding="utf-8"?>
