@@ -460,6 +460,99 @@ Este metodo vuelve atras, pasando en el Bundle, los parametros de pantalla anter
 updateUserInterface("BACK");
 Donde BACK es una constante generica definida en Java en el Navigator  (Navigator.BACK_EVENT) que identifica el volver a la pantalla anterior.
 
+
+Example for a BaseFragment implementing Navigator
+-------------------------------------------------
+
+public abstract class BaseFragment extends Fragment implements NavegableFragment {
+
+    private NavegableFragment me;
+    private Bundle mProperties;
+    private String mEventUIConfigurationId;
+    private String mLastScreenBeforeCurrent;
+    private String mEventLeadingToCurrentScreen;
+    private String mCurrentScreen;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        if(getFragmentLayout()==0){
+            return null;
+        }else{
+            return inflater.inflate(getFragmentLayout(), container, false);
+        }
+    }
+
+    public BaseFragment() {
+        me = this;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+
+        try {
+            MainActivity.instance.initAdminAccess();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Every fragment has to inflate a layout in the onCreateView method. We have added this method to
+     * avoid duplicate all the inflate code in every fragment. You only have to return the layout to
+     * inflate in this method when extends BaseFragment.
+     */
+    protected abstract int getFragmentLayout();
+
+    @Override
+    public NavegableFragment getInstance() {
+        return me;
+    }
+
+    @Override
+    public void updateUserInterface(String event) {
+        mEventUIConfigurationId = event;
+    }
+
+    @Override
+    public void onSetProperties(Bundle bundle) {
+        mProperties = bundle;
+        //getting Navigator internal data
+        mLastScreenBeforeCurrent = bundle.getString(Navigator.COME_FROM_SCREEN);
+        mEventLeadingToCurrentScreen = bundle.getString(Navigator.BY_EVENT);
+        mCurrentScreen = bundle.getString(Navigator.CURRENT_SCREEN);
+    }
+
+    public void changeTitle(int strId, boolean isTitleVisible) {
+        String packageName = "android";
+        int resId = getResources().getIdentifier("action_bar_container", "id", packageName);
+        View view = getActivity().findViewById(resId);
+
+        TitleUtil.changeTitle(view, strId, isTitleVisible);
+    }
+
+    @Override
+    public String getEventUIConfigurationId() {
+        return mEventUIConfigurationId;
+    }
+
+    @Override
+    public String getLastScreenBeforeCurrent() {
+        return mLastScreenBeforeCurrent;
+    }
+
+    @Override
+    public String getEventLeadingToCurrentScreen() {
+        return mEventLeadingToCurrentScreen;
+    }
+
+    @Override
+    public String getCurrentScreen() {
+        return mCurrentScreen;
+    }
+}
 //-lm2a-/
 
 //lm2a
