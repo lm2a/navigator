@@ -5,7 +5,7 @@ Using this framework you can avoid boiler plate code to navigate among fragments
 
 Here you have an image showing the way it works:
 
-![Navigator](https://photos.app.goo.gl/j698oJf9orTsoRru2)
+![Navigator](http://www.oniris-studios.com/wp-content/uploads/2017/11/IMG_20171110_112859.jpg)
 
 After that all the screen flows should apper in a xml file like this:
 
